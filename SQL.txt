@@ -40,8 +40,7 @@ What are the skills required for these top-paying roles?
   
   
 OPTION_Top Paying Job's Skills_2
-  
-  
+   
   WITH top_paying_jobs AS(
 SELECT TOP 10 [sql_course].[dbo].[job_postings_fact].[job_id]
       ,[job_title]
@@ -64,13 +63,11 @@ What are the most in-demand skills for my role?
 
 SELECT TOP 5 [skills], COUNT(skills) AS skills_count
 FROM [sql_course].[dbo].[job_postings_fact]
-
 INNER JOIN [sql_course].[dbo].[skills_job_dim] ON [sql_course].[dbo].[job_postings_fact].job_id=[sql_course].[dbo].[skills_job_dim].job_id
 INNER JOIN [sql_course].[dbo].[skills_dim] ON [sql_course].[dbo].[skills_job_dim].[skill_id]=[sql_course].[dbo].[skills_dim].skill_id
 WHERE [job_title]='Data Analyst'
 GROUP BY (skills)
 ORDER BY [skills_count] DESC
-
 
 
 OPTION_Top Paying Skills
