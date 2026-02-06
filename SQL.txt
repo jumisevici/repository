@@ -74,15 +74,14 @@ ORDER BY [skills_count] DESC
 
 
 OPTION_Top Paying Skills
+What are the top skills based on salary for my role?
 
-
-
-
-
-
-
-
-https://www.youtube.com/watch?v=7mz73uXD9DA
-3:26
-
-
+SELECT TOP 25 [skills],
+ROUND(AVG(salary_year_avg), 0) AS avg_salary
+FROM [sql_course].[dbo].[job_postings_fact]
+INNER JOIN [sql_course].[dbo].[skills_job_dim] ON [sql_course].[dbo].[job_postings_fact].job_id=[sql_course].[dbo].[skills_job_dim].job_id
+INNER JOIN [sql_course].[dbo].[skills_dim] ON [sql_course].[dbo].[skills_job_dim].[skill_id]=[sql_course].[dbo].[skills_dim].skill_id
+WHERE [job_title]='Data Analyst' AND
+  [salary_year_avg] IS NOT NULL
+GROUP BY (skills)
+ORDER BY (avg_salary) DESC
